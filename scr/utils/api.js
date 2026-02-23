@@ -42,11 +42,6 @@ api.interceptors.response.use(
     if (error.response?.status === 401) {
       await AsyncStorage.multiRemove(['userToken', 'userData']);
     }
-    
-    if (error.response?.status === 403 && error.response?.data?.error === 'MAX_DEVICES_REACHED') {
-      // Handled in AuthScreen
-    }
-    
     return Promise.reject(error);
   }
 );
