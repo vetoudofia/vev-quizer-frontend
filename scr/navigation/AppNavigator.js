@@ -2,7 +2,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
+import GoldenChanceScreen from '../screens/GoldenChanceScreen';
 import HomeScreen from '../screens/HomeScreen';
 import WalletScreen from '../screens/WalletScreen';
 import ProfileScreen from '../screens/ProfileScreen';
@@ -66,6 +66,7 @@ const AppNavigator = () => {
       <Stack.Screen name="Settings" component={SettingsScreen} />
       <Stack.Screen name="Contact" component={ContactScreen} />
       <Stack.Screen name="WinCelebration" component={WinCelebrationScreen} />
+      <Stack.Screen name="GoldenChance" component={GoldenChanceScreen} />
     </Stack.Navigator>
   );
 };
