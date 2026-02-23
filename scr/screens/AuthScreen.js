@@ -1,3 +1,4 @@
+import * as Device from 'expo-device';
 import React, { useState, useEffect } from 'react';
 import {
   View,
