@@ -171,4 +171,4 @@ export const globalStyles = StyleSheet.create({
   }
 });
 
-export default globalStyles;￼Enter
+export default globalStyles;
