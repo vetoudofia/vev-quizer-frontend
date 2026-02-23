@@ -124,4 +124,4 @@ const styles = StyleSheet.create({
   faqAnswer: { fontSize: 12, color: '#666', lineHeight: 18 }
 });
 
-export default ContactScreen;￼Enter
+export default ContactScreen;
