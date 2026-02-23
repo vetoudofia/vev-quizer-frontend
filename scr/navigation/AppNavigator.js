@@ -70,4 +70,4 @@ const AppNavigator = () => {
   );
 };
 
-export default AppNavigator;￼Enter
+export default AppNavigator;
