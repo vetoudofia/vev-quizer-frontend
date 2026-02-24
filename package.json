@@ -1,15 +1,12 @@
 {
-  "name": "vev-quizer-admin",
+  "name": "vev-quizer",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web",
-    "build:android": "expo build:android",
-    "build:ios": "expo build:ios",
-    "eject": "expo eject"
+    "web": "expo start --web"
   },
   "dependencies": {
     "expo": "~49.0.0",
@@ -25,11 +22,16 @@
     "@react-native-async-storage/async-storage": "1.18.2",
     "react-native-gesture-handler": "~2.12.0",
     "react-native-reanimated": "~3.3.0",
+    "react-native-svg": "13.9.0",
+    "expo-av": "~13.6.0",
+    "expo-font": "~11.4.0",
     "axios": "^1.5.0",
-    "react-native-linear-gradient": "^2.8.3"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.20.0"
-  },
-  "private": true
+    "react-native-linear-gradient": "^2.8.3",
+    "lottie-react-native": "^6.4.0",
+    "expo-web-browser": "~12.3.2",
+    "expo-auth-session": "~5.0.2",
+    "expo-random": "~13.1.1",
+    "expo-device": "5.4.0",
+    "expo-screen-capture": "5.4.0"
+  }
 }

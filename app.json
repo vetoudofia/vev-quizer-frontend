@@ -1,33 +1,48 @@
 {
   "expo": {
-    "name": "VEV Quizer Admin",
-    "slug": "vev-quizer-admin",
+    "name": "VEV Quizer",
+    "slug": "vev-quizer",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "dark",
+    "icon": "./src/assets/images/logo.png",
+    "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./src/assets/images/logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#1a1a2e"
+      "backgroundColor": "#667eea"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.vevquizer.admin"
+      "bundleIdentifier": "com.vevquizer.app"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#1a1a2e"
+        "foregroundImage": "./src/assets/images/logo.png",
+        "backgroundColor": "#667eea"
       },
-      "package": "com.vevquizer.admin"
+      "package": "com.vevquizer.app"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./src/assets/images/logo.png"
     },
+    "plugins": [
+      "expo-av",
+      "expo-screen-capture",
+      [
+        "expo-device",
+        {
+          "android": {
+            "enabled": true
+          },
+          "ios": {
+            "enabled": false
+          }
+        }
+      ]
+    ],
     "extra": {
       "apiUrl": "https://vev-squizer-backend.onrender.com/api"
     }
