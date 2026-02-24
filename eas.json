@@ -6,18 +6,14 @@
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal",
-      "node": "20"
+      "distribution": "internal"
     },
     "preview": {
       "android": {
         "buildType": "apk"
-      },
-      "node": "20"
+      }
     },
-    "production": {
-      "node": "20"
-    }
+    "production": {}
   },
   "submit": {
     "production": {}
