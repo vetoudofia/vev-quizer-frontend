@@ -1,6 +1,19 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as Device from 'expo-device';
+import { Platform } from 'react-native';
+
+// Dynamically import expo-device only on Android
+let Device;
+if (Platform.OS === 'android') {
+  Device = require('expo-device');
+} else {
+  // Mock for iOS (device fingerprinting not needed)
+  Device = {
+    brand: 'Apple',
+    modelName: 'iPhone',
+    deviceName: 'iPhone'
+  };
+}
 
 const BASE_URL = 'https://vev-squizer-backend.onrender.com/api';
 
@@ -15,7 +28,11 @@ const api = axios.create({
 const getDeviceId = async () => {
   let deviceId = await AsyncStorage.getItem('deviceId');
   if (!deviceId) {
-    deviceId = `${Device.brand || 'unknown'}_${Device.modelName || 'unknown'}_${Date.now()}`;
+    if (Platform.OS === 'android') {
+      deviceId = `${Device.brand || 'unknown'}_${Device.modelName || 'unknown'}_${Date.now()}`;
+    } else {
+      deviceId = `ios_${Date.now()}_${Math.random().toString(36).substring(7)}`;
+    }
     await AsyncStorage.setItem('deviceId', deviceId);
   }
   return deviceId;
