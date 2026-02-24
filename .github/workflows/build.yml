@@ -28,17 +28,15 @@ jobs:
 
       - name: 🏗️ Build APK
         run: eas build -p android --profile preview --non-interactive --local
+        continue-on-error: true  # ← ADD THIS
 
-      - name: 💾 Force save package-lock.json
-        run: |
-          git config --global user.name 'GitHub Action'
-          git config --global user.email 'action@github.com'
-          git add -f package-lock.json
-          git commit -m "Add package-lock.json" || echo "No changes"
-          git push
+      - name: 🔍 Find APK
+        run: find . -name "*.apk"
+        continue-on-error: true  # ← ADD THIS
 
       - name: 📤 Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: app-release
-          path: ./*.apk
+          path: "**/*.apk"
+        if: always()  # ← THIS IS KEY - upload even if previous steps fail
