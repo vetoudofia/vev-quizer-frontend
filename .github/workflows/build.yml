@@ -40,6 +40,17 @@ jobs:
           fi
         continue-on-error: true
 
+      - name: 💾 Save build log to repo
+        run: |
+          mkdir -p logs
+          cp build.log logs/build-$(date +%Y%m%d-%H%M%S).log
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git add logs/
+          git commit -m "Add build log" || echo "No changes"
+          git push
+        if: always()
+
       - name: 🔍 Find APK
         run: |
           find . -name "*.apk" -type f | tee apk-list.txt
@@ -50,13 +61,6 @@ jobs:
             echo "❌ No APK files found"
           fi
         continue-on-error: true
-
-      - name: 📄 Upload build log
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-log
-          path: build.log
-        if: always()
 
       - name: 📤 Upload APK (if exists)
         uses: actions/upload-artifact@v4
