@@ -1,4 +1,14 @@
-import * as Device from 'expo-device';
+import { Platform } from 'react-native';
+// Dynamically import expo-device only on Android
+let Device;
+if (Platform.OS === 'android') {
+  Device = require('expo-device');
+} else {
+  Device = {
+    brand: 'Apple',
+    modelName: 'iPhone'
+  };
+}
 import React, { useState, useEffect } from 'react';
 import {
   View,
