@@ -26,10 +26,11 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
-      - name: 🏗️ Build APK (cloud build)
+      - name: 📦 Ignore dirty working tree
+        run: git config --global user.email "action@github.com" && git config --global user.name "GitHub Action"
+
+      - name: 🏗️ Build APK
         run: eas build -p android --profile preview --non-interactive
 
       - name: 🔍 Get Build URL
-        run: |
-          echo "✅ Build started! Check your Expo dashboard for the APK"
-          echo "https://expo.dev/accounts/vetoudofia/projects/vev-quizer/builds"
+        run: echo "✅ Build started! Check https://expo.dev/accounts/vetoudofia/projects/vev-quizer/builds"
