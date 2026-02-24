@@ -30,18 +30,7 @@
     },
     "plugins": [
       "expo-av",
-      "expo-screen-capture",
-      [
-        "expo-device",
-        {
-          "android": {
-            "enabled": true
-          },
-          "ios": {
-            "enabled": false
-          }
-        }
-      ]
+      "expo-screen-capture"
     ],
     "extra": {
       "apiUrl": "https://vev-squizer-backend.onrender.com/api"
