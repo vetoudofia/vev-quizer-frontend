@@ -17,6 +17,9 @@ jobs:
         with:
           node-version: '20'
 
+      - name: 📦 Generate package-lock.json
+        run: npm install --package-lock-only
+
       - name: 📦 Install dependencies
         run: npm install
 
@@ -28,6 +31,14 @@ jobs:
 
       - name: 🏗️ Build APK
         run: eas build -p android --profile preview --non-interactive --local
+
+      - name: 💾 Save package-lock.json
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git add package-lock.json
+          git commit -m "Update package-lock.json" || echo "No changes to commit"
+          git push
 
       - name: 📤 Upload APK
         uses: actions/upload-artifact@v4
