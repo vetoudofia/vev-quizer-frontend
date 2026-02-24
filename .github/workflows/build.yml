@@ -17,9 +17,6 @@ jobs:
         with:
           node-version: '20'
 
-      - name: 📦 Generate package-lock.json
-        run: npm install --package-lock-only
-
       - name: 📦 Install dependencies
         run: npm install
 
@@ -32,12 +29,12 @@ jobs:
       - name: 🏗️ Build APK
         run: eas build -p android --profile preview --non-interactive --local
 
-      - name: 💾 Save package-lock.json
+      - name: 💾 Force save package-lock.json
         run: |
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
-          git add package-lock.json
-          git commit -m "Update package-lock.json" || echo "No changes to commit"
+          git add -f package-lock.json
+          git commit -m "Add package-lock.json" || echo "No changes"
           git push
 
       - name: 📤 Upload APK
