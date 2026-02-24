@@ -26,17 +26,41 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
-      - name: 🏗️ Build APK
-        run: eas build -p android --profile preview --non-interactive --local
-        continue-on-error: true  # ← ADD THIS
+      - name: 🏗️ Build APK with detailed logging
+        run: |
+          echo "Starting build at $(date)"
+          eas build -p android --profile preview --non-interactive --local 2>&1 | tee build.log
+          BUILD_EXIT_CODE=${PIPESTATUS[0]}
+          echo "Build exit code: $BUILD_EXIT_CODE"
+          if [ $BUILD_EXIT_CODE -ne 0 ]; then
+            echo "❌ Build failed with exit code $BUILD_EXIT_CODE"
+            echo "Last 50 lines of build.log:"
+            tail -50 build.log
+            exit $BUILD_EXIT_CODE
+          fi
+        continue-on-error: true
 
       - name: 🔍 Find APK
-        run: find . -name "*.apk"
-        continue-on-error: true  # ← ADD THIS
+        run: |
+          find . -name "*.apk" -type f | tee apk-list.txt
+          if [ -s apk-list.txt ]; then
+            echo "✅ APK found:"
+            cat apk-list.txt
+          else
+            echo "❌ No APK files found"
+          fi
+        continue-on-error: true
 
-      - name: 📤 Upload APK
+      - name: 📄 Upload build log
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-log
+          path: build.log
+        if: always()
+
+      - name: 📤 Upload APK (if exists)
         uses: actions/upload-artifact@v4
         with:
           name: app-release
           path: "**/*.apk"
-        if: always()  # ← THIS IS KEY - upload even if previous steps fail
+        if: always()
