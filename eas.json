@@ -7,16 +7,16 @@
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "node": "20.0.0"
+      "node": "20"
     },
     "preview": {
       "android": {
         "buildType": "apk"
       },
-      "node": "20.0.0"
+      "node": "20"
     },
     "production": {
-      "node": "20.0.0"
+      "node": "20"
     }
   },
   "submit": {
