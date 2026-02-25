@@ -19,7 +19,7 @@ import {
   ScrollView,
   Alert,
   KeyboardAvoidingView,
-  Platform,
+  
   Modal
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
