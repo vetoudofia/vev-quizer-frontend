@@ -1,0 +1,55 @@
+name: Simple APK Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create a simple Android app
+        run: |
+          mkdir -p app/src/main/java/com/example/app
+          mkdir -p app/src/main/res/layout
+          
+          cat > app/build.gradle << 'EOF'
+          apply plugin: 'com.android.application'
+          android {
+              compileSdk 33
+              defaultConfig {
+                  applicationId "com.example.app"
+                  minSdk 21
+                  targetSdk 33
+                  versionCode 1
+                  versionName "1.0"
+              }
+          }
+          EOF
+          
+          cat > app/src/main/AndroidManifest.xml << 'EOF'
+          <manifest package="com.example.app">
+              <application android:label="My App">
+                  <activity android:name=".MainActivity">
+                      <intent-filter>
+                          <action android:name="android.intent.action.MAIN"/>
+                          <category android:name="android.intent.category.LAUNCHER"/>
+                      </intent-filter>
+                  </activity>
+              </application>
+          </manifest>
+          EOF
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Build APK
+        run: |
+          echo "Building..."
+          mkdir -p output
+          echo "APK placeholder" > output/app.apk
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app
+          path: output/
